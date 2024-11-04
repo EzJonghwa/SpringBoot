@@ -1,0 +1,9 @@
+package com.future.my.vo;
+
+import lombok.Setter;
+
+@Setter
+public class SearchVO {
+
+	private String currentTime;
+}

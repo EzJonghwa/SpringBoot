@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>love letter</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<style>
+		body {
+			background-color: rgb(250, 250, 250);
+		}
+		#card {
+			background-image: url('/img/2.webp');
+			background-size: cover;
+			padding: 20px;
+			margin-top: 100px;
+		}
+		.form-container {
+			background: rgba(255, 255, 255, 0.5);
+			border-radius: 15px;
+			padding: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="card" class="mb-3" style="display: inline-block; width: 30%;">
+		<div class="form-container">
+			<h1 id="h1">love letter</h1>
+			<form id="sendForm" method="post" action="/sendLetter">
+				<div class="form-group">
+					<label for="to">send email:</label>
+					<input type="email" class="form-control" name="email" required>
+				</div>
+				<div class="form-group">
+					<label for="from">From:</label>
+					<input type="text" class="form-control" name="fromNm" required>
+				</div>
+				<div class="form-group">
+					<label for="to">To:</label>
+					<input type="text" class="form-control" name="toNm" required>
+				</div>
+				<div class="form-group">
+					<label for="message">Message:</label>
+					<textarea class="form-control" id="message" name="message" rows="3"></textarea>
+				</div>
+				<input type="hidden" name="messageOne" id="messageOne">
+				<input type="hidden" name="messageTwo" id="messageTwo">
+				<input type="hidden" name="messageThree" id="messageThree">
+				<button type="submit" class="btn btn-danger mt-3" id="openletter">마음을 전달하기</button>
+			</form>
+		</div>
+	</div>
+	   <div id="letter" style="display: none;"></div>
+        <h1>
+            <span id="typing-text1" style="font-size:25px;"></span>
+        </h1>
+        <h1>
+            <span id="typing-text2" style="font-size:25px;"></span>
+        </h1>
+        <h1>
+            <span id="typing-text3" style="font-size:25px;"></span>
+        </h1>
+    <div id="leaves">
+        <div class="petal">🍁</div>
+        <div class="petal">🍁</div>
+        <div class="petal">🍁</div>
+        <div class="petal">🍁</div>
+        <div class="petal">🍁</div>
+        <div class="petal">🍁</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🍂</div>
+        <div class="petal">🌿</div>
+        <div class="petal">🍃</div>
+        <div class="petal">🍄</div>
+        <div class="petal">🌰</div>
+    </div>
+   
+
+	<script>
+		$(document).ready(function () {
+			$("#sendForm").submit(function(e){
+				e.preventDefault();
+				var messageArr = $('#message').val().split("\n");
+			})
+			
+		});
+		 document.addEventListener('DOMContentLoaded', function(){
+	           var petals = document.querySelectorAll('.petal')
+	            $("#leaves").css('opacity', '1');
+	            setInterval(ani_petals,2000);
+	            function ani_petals(){
+	                for(var i=0; i<petals.length;i++){
+	                	 petals[i].style.left=Math.random() *90 +'%';
+	                     petals[i].style.opacity=Math.random();
+	                     petals[i].style.animationDuration = Math.random() * 3+1+'s';
+	                     petals[i].style.animationDelay = Math.random() *2 +'s';
+	                     petals[i].style.transform = `rotate(${Math.random() * 360}deg)`; 
+	                     petals[i].style.fontSize = Math.random() * 30+100+'px';
+	                }
+	            }
+	        })
+
+	</script>
+
+</html>

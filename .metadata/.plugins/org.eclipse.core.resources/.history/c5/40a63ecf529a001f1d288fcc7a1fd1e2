@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Social Media Feed</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS 및 의존성 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//cdn.materialdesignicons.com/3.7.95/css/materialdesignicons.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="mt-4 py-2 border-top border-bottom">
+									<ul class="nav profile-navbar">
+										<li class="nav-item"><a class="nav-link" href="#"> <i class="mdi mdi-account-outline"></i> Info</a></li>
+										<li class="nav-item"><a class="nav-link active" href="#"><i class="mdi mdi-newspaper"></i> Feed</a></li>
+										<li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-calendar"></i> Agenda
+										</a></li><li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-attachment"></i> Resume </a></li>
+									</ul>
+								</div>
+						   <!-- sample  -->
+ 								<div class="profile-feed"> 
+ 									<div class="d-flex align-items-start profile-feed-item"> 
+ 										<img src="https://bootdey.com/img/Content/avatar/avatar7.png"	alt="sample" class="img-sm rounded-circle"> 
+										<div class="ml-4">
+ 											<h5> 
+ 												<small class="ml-4 text-muted">작성시간<i 
+													class="mdi mdi-clock mr-1"></i></small> 
+													작성자 
+ 											</h5> 
+ 											<h6 class="mdi mdi-clock mr-1">조금전</h6>
+											<p>작성 내용</p> 
+											<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="sample"		class="rounded mw-50"> 
+ 											<p class="small text-muted mt-2 mb-0"> 
+												<span> <i class="mdi mdi-star mr-1"></i>4 
+ 												</span> <span class="ml-2"> <i class="mdi mdi-comment mr-1"></i>11
+												</span> <span class="ml-2"> <i class="mdi mdi-reply"></i>
+ 												</span> 
+ 											</p> 
+ 										</div>
+									</div>
+ 								</div>
+							<!-- sample  -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:inline="javascript">
+	</script>
+	
+	
+</body>
+</html>

@@ -1,0 +1,24 @@
+package com.future.my.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class LetterController {
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("nm","pengsu");
+		return "index";
+	}
+	@GetMapping("/letterForm")
+	public String letterForm() {
+		return "letterForm";
+	}
+	@PostMapping("/sendLetter")
+	public String sendLetter(LetterVO vo) {
+		return "redirect:/letter";
+	}
+}

@@ -1,0 +1,8 @@
+package com.future.my.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface ISnsDAO {
+
+}

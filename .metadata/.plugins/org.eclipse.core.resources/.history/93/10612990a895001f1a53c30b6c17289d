@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.future.my.member.dao.IMemberDAO">
+
+	<insert id="registMember" parameterType="com.future.my.member.vo.MemberVO">
+		INSERT INTO members(mem_id, mem_pw, mem_nm)
+		VALUES(#{memId}, #{memPw}, #{memNm})
+	</insert>
+	
+	<select id="loginMember" parameterType="MemberVO" resultType="MemberVO">
+		
+		SELECT mem_id
+		     , mem_nm
+		     , mem_pw
+		     , profile_img
+		FROM members
+		WHERE use_yn ='Y'
+		AND   mem_id = #{memId}
+
+	
+	</select>
+	
+	
+	<update id="profileUpload" parameterType="memberVO">
+		UPDATE members
+		SET profile_img = #{profileImg}
+		WHERE mem_id = #{memId}
+	
+	
+	</update>
+	
+	
+	<!-- ResultMap 정의-->
+	<resultMap id="QuestionMap" type="com.future.my.member.vo.QuestionVO">
+		<id property="qId" column="q_id" />
+		<result property="qContent" column="q_content" />
+		<result property="qCategory" column="q_category" />
+		<collection property="options" ofType="com.future.my.member.vo.OptionVO">
+			<id property="oId" column="o_id" />
+			<result property="oContent" column="o_content" />
+		</collection>
+	</resultMap>
+	<select id="getSurvey" resultMap="QuestionMap">
+			SELECT a.q_id
+			     , a.q_content
+			     , a.q_category
+			     , b.o_id
+			     , b.o_content
+			     
+			FROM questions a 
+			    ,q_options b
+			WHERE a.q_id = b.q_id
+			ORDER BY a.q_id, b.o_id
+	</select>
+	
+
+	
+	
+	
+</mapper>

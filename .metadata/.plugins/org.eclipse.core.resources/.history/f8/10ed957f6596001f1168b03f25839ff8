@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.future.my.dao.ILetterDAO">
+
+	<select id="getLetter" resultType="com.future.my.letter.vo.LetterVO"
+	                       parameterType="com.future.my.letter.vo.LetterVO" >
+	    	SELECT *
+			FROM LETTER
+			WHERE EMAIL = #{email}
+			AND TO_NM= #{toNm}
+			ORDER BY SEQ DESC
+			LIMIT 1
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.future.my.dao.ISnsDAO">
+		
+		<!-- count -->
+		<select id="getSnsTotalCount" resultType="int" 
+				parameterType="com.future.my.vo.SearchVO">
+		
+		SELECT count(*)
+    
+			from (
+			    select  post_id ,author ,author_img ,content ,post_time
+			             -- 분단위로 합산
+			            ,EXTRACT(DAY FROM (CURRENT_TIMESTAMP - post_time))*24 * 60+ 
+			             EXTRACT(HOUR FROM (CURRENT_TIMESTAMP - post_time)) * 60 +
+			             EXTRACT(MINUTE FROM (CURRENT_TIMESTAMP - post_time)) as minutes_ago
+			    
+			    from posts
+			    <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(currentTime)">
+				    <![CDATA[
+				    where post_time < to_date(#{currentTime, 'YYYY-MM-DD HH24:MI:SS')
+				    ]]>
+			    </if>
+			    
+			    order by post_time DESC
+			    ) 
+		
+		</select>
+		
+		<!-- 조회 -->
+		<select id="getSns" resultType="com.future.my.vo.SnsVO"
+			    parameterType="com.future.my.vo.SearchVO">
+		
+					SELECT *
+			FROM (
+			        SELECT 
+			                rownum as rnum
+			                ,a.*
+			                <![CDATA[
+			                ,CASE WHEN minutes_ago  < 2  THEN '조금전...'
+			                      WHEN minutes_ago  < 6 THEN '5분전...'
+			                      WHEN minutes_ago  < 16 THEN '15분전...'
+			                      WHEN minutes_ago  < 31 THEN '30분전...'
+			                      WHEN minutes_ago  < 60 THEN '1시간전...'
+			                      WHEN minutes_ago  < 60*24 THEN FLOOR(minutes_ago/60) ||'시간전...'
+			                      ELSE FLOOR(minutes_ago/(60*24)) ||'일 전...'
+			                  ]]>
+			                 END as relative_time
+			                 
+			        from (
+			            select  post_id ,author ,author_img ,content ,post_time
+			                     -- 분단위로 합산
+			                    ,EXTRACT(DAY FROM (CURRENT_TIMESTAMP - post_time))*24 * 60+ 
+			                     EXTRACT(HOUR FROM (CURRENT_TIMESTAMP - post_time)) * 60 +
+			                     EXTRACT(MINUTE FROM (CURRENT_TIMESTAMP - post_time)) as minutes_ago
+			            
+			            from posts
+			           <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(currentTime)">
+						    <![CDATA[
+						    where post_time < to_date(#{currentTime, 'YYYY-MM-DD HH24:MI:SS')
+						    ]]>
+						</if>
+			            order by post_time DESC
+			            )a
+			    )
+			WHERE rnum BETWEEN 1 AND 5;
+		</select>
+
+
+
+</mapper>

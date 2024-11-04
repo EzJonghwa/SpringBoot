@@ -1,0 +1,22 @@
+spring.application.name=letter
+server.port = 8080
+
+# H2 database
+#memory
+#spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#file
+#spring.datasource.url=jdbc:h2:file:c:/dev_spring/workspace_boot/letter/letter_db;DB_CLOSE_ON_EXIT=FALSE
+#spring.datasource.url=jdbc:h2:file:/home/ubuntu/workspace/letter/letter_db;DB_CLOSE_ON_EXIT=FALSE
+
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.sql.init.mode=always
+
+#mybatis
+mybatis.mapper-locations=/mybatis/mapper/**/*.xml
+mybatis.type-aliases-package=com.future.my.mapper
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.configuration.jdbc-type-for-null=varchar
