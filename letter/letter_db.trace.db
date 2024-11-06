@@ -1,3 +1,9 @@
 2024-11-01 11:58:18.401233+09:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]selelct * from letter"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
 selelct * from letter [42001-224]
+2024-11-06 10:28:45.755619+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from [*]user"; expected "identifier"; SQL statement:
+select * from user [42001-224]
+2024-11-06 10:28:56.346875+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "user" not found; SQL statement:
+select * from "user" [42102-224]

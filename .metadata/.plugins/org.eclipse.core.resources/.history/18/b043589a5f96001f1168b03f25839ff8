@@ -1,5 +1,0 @@
-package com.future.my.dao;
-
-public interface ILetterDAO {
-
-}
